@@ -28,32 +28,32 @@
       <p class="lead">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
-    <div class="container">
+    <div class="container" id="container">
       <!-- Timeblocks go here -->
-      <div id="hour-1" class="time-block row hour"></div>
-      <div id="hour-2" class="time-block row hour"></div>
-      <div id="hour-3" class="time-block row hour"></div>
-      <div id="hour-4" class="time-block row hour"></div>
-      <div id="hour-5" class="time-block row hour"></div>
-      <div id="hour-6" class="time-block row hour"></div>
-      <div id="hour-7" class="time-block row hour"></div>
-      <div id="hour-8" class="time-block row hour"></div>
-      <div id="hour-9" class="time-block row hour"></div>
-      <div id="hour-10" class="time-block row hour"></div>
-      <div id="hour-11" class="time-block row hour"></div>
-      <div id="hour-12" class="time-block row hour"></div>
-      <div id="hour-13" class="time-block row hour"></div>
-      <div id="hour-14" class="time-block row hour"></div>
-      <div id="hour-15" class="time-block row hour"></div>
-      <div id="hour-16" class="time-block row hour"></div>
-      <div id="hour-17" class="time-block row hour"></div>
-      <div id="hour-18" class="time-block row hour"></div>
-      <div id="hour-19" class="time-block row hour"></div>
-      <div id="hour-20" class="time-block row hour"></div>
-      <div id="hour-21" class="time-block row hour"></div>
-      <div id="hour-22" class="time-block row hour"></div>
-      <div id="hour-23" class="time-block row hour"></div>
-      <div id="hour-24" class="time-block row hour"></div>
+      <!-- <div id="hour-1" class="time-block row hour"><span>00:00</span></div>
+      <div id="hour-2" class="time-block row hour"><span>01:00</span></div>
+      <div id="hour-3" class="time-block row hour"><span>02:00</span></div>
+      <div id="hour-4" class="time-block row hour"><span>03:00</span></div>
+      <div id="hour-5" class="time-block row hour"><span>04:00</span></div>
+      <div id="hour-6" class="time-block row hour"><span>05:00</span></div>
+      <div id="hour-7" class="time-block row hour"><span>06:00</span></div>
+      <div id="hour-8" class="time-block row hour"><span>07:00</span></div>
+      <div id="hour-9" class="time-block row hour"><span>08:00</span></div>
+      <div id="hour-10" class="time-block row hour"><span>09:00</span></div>
+      <div id="hour-11" class="time-block row hour"><span>10:00</span></div>
+      <div id="hour-12" class="time-block row hour"><span>11:00</span></div>
+      <div id="hour-13" class="time-block row hour"><span>12:00</span></div>
+      <div id="hour-14" class="time-block row hour"><span>13:00</span></div>
+      <div id="hour-15" class="time-block row hour"><span>14:00</span></div>
+      <div id="hour-16" class="time-block row hour"><span>15:00</span></div>
+      <div id="hour-17" class="time-block row hour"><span>16:00</span></div>
+      <div id="hour-18" class="time-block row hour"><span>17:00</span></div>
+      <div id="hour-19" class="time-block row hour"><span>18:00</span></div>
+      <div id="hour-20" class="time-block row hour"><span>19:00</span></div>
+      <div id="hour-21" class="time-block row hour"><span>20:00</span></div>
+      <div id="hour-22" class="time-block row hour"><span>21:00</span></div>
+      <div id="hour-23" class="time-block row hour"><span>22:00</span></div>
+      <div id="hour-24" class="time-block row hour"><span>23:00</span></div> -->
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -64,6 +64,11 @@
       let dateToday = new Date()
       // Get the day of the week
       let weekday = ''
+      let currentHour = ''
+      // hours in a day used to generate div elements
+      const hoursInADay = 24
+
+      //used to display which day of the week it is
       const getDayofWeek = (date) => {
         let n = date.getDay()
         switch (n) {
@@ -92,6 +97,8 @@
             break;
         }
       }
+
+      // used to format date at top of page
       const formatDate = (date) => {
         console.log(date)
         let day = date.getDate()
@@ -102,6 +109,20 @@
         console.log(year)
         return `${day}/${month}/${year}`
       }
+
+      // used to procedurally generate div elements and give them class and id
+      const generateHourDivs = (hours) => {
+        document.getElementById("container").innerHTML = ''
+        for (i=0;i<hours;i++) {
+          let time = ''
+          if (i<=9) {time = `0${i}:00`}
+          else {time = `${i}:00`}
+          document.getElementById("container").innerHTML += `<div id="hour-${i}" class="time-block row hour"><span>${time}</span></div>`
+        }
+      }
+
+      ///////////////////////
+      generateHourDivs(hoursInADay)
       getDayofWeek(dateToday)
       document.getElementById('currentDay').textContent = weekday + ", " + formatDate(dateToday)
 
