@@ -30,9 +30,81 @@
     </header>
     <div class="container">
       <!-- Timeblocks go here -->
+      <div id="hour-1" class="time-block row hour"></div>
+      <div id="hour-2" class="time-block row hour"></div>
+      <div id="hour-3" class="time-block row hour"></div>
+      <div id="hour-4" class="time-block row hour"></div>
+      <div id="hour-5" class="time-block row hour"></div>
+      <div id="hour-6" class="time-block row hour"></div>
+      <div id="hour-7" class="time-block row hour"></div>
+      <div id="hour-8" class="time-block row hour"></div>
+      <div id="hour-9" class="time-block row hour"></div>
+      <div id="hour-10" class="time-block row hour"></div>
+      <div id="hour-11" class="time-block row hour"></div>
+      <div id="hour-12" class="time-block row hour"></div>
+      <div id="hour-13" class="time-block row hour"></div>
+      <div id="hour-14" class="time-block row hour"></div>
+      <div id="hour-15" class="time-block row hour"></div>
+      <div id="hour-16" class="time-block row hour"></div>
+      <div id="hour-17" class="time-block row hour"></div>
+      <div id="hour-18" class="time-block row hour"></div>
+      <div id="hour-19" class="time-block row hour"></div>
+      <div id="hour-20" class="time-block row hour"></div>
+      <div id="hour-21" class="time-block row hour"></div>
+      <div id="hour-22" class="time-block row hour"></div>
+      <div id="hour-23" class="time-block row hour"></div>
+      <div id="hour-24" class="time-block row hour"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script>
+      
+      // Get today's date
+      let dateToday = new Date()
+      // Get the day of the week
+      let weekday = ''
+      const getDayofWeek = (date) => {
+        let n = date.getDay()
+        switch (n) {
+          case 0:
+            weekday = 'Sunday'
+            break;
+          case 1:
+            weekday = 'Monday'
+            break
+          case 2:
+            weekday = 'Tuesday'
+            break
+          case 3: 
+            weekday = 'Wednesday'
+            break
+          case 4:
+            weekday = 'Thursday'
+            break
+          case 5: 
+            weekday = 'Friday'
+            break
+          case 6:
+            weekday = 'Saturday'
+            break
+          default:
+            break;
+        }
+      }
+      const formatDate = (date) => {
+        console.log(date)
+        let day = date.getDate()
+        console.log(day)
+        let month = date.getMonth()+1
+        console.log(month)
+        let year = date.getFullYear()
+        console.log(year)
+        return `${day}/${month}/${year}`
+      }
+      getDayofWeek(dateToday)
+      document.getElementById('currentDay').textContent = weekday + ", " + formatDate(dateToday)
+
+    </script>
   </body>
 </html>
